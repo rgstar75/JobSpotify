@@ -1,0 +1,121 @@
+{% include 'recruiter/navigation.html' %}
+
+{% load static %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'applicant_home.css' %}">
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="bg-image" style="height: fit-content;">
+
+      <div class="bg-text">
+        <h2>List of applicants</h2>
+      </div>
+    </div>
+    
+    <script src="" async defer></script>
+  </body>
+</html>
+
+{% block content %}
+
+<!--<div class="back">
+  <div class="welcome">
+    <h1>Welcome {{user}}!!</h1>
+    <p>{% lorem 1 b random %}</p>
+  </div>
+</div>-->
+<div class="main">
+<div class="container">
+  {% if applicants.count %}
+  <div class="row">
+    <div class="col-md-8"></div>
+    
+      
+    </div>
+
+  </div>
+
+  <h2>Jobs Posted :</h2>
+
+  <div class="app-table">
+    <table class = "table table-stripped table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>View Profile</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for applicant in page_obj %}
+        <tr>
+            <td style="text-transform: capitalize; ">{{ applicant.applicant }}</td>
+
+          <td><a href="{% url 'applicantprofile' applicant_id=applicant.applicant.id %}" class = "btn btn-secondary btn-sm">View Profile</a></td>
+          <td><a href="{% url 'select' job_id=job.id applicant_id=applicant.applicant.id %}" class = "btn btn-secondary btn-sm">Select</a></td>
+    
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+
+  <p class="no-results style="display: none;"></p>
+    <div class="table-output">
+      <table class = "table table-stripped table-hover">
+        <thead>
+          <tr>
+            <th>Profile</th>
+            <th>Applicants</th>
+          </tr>
+        </thead>
+
+        <tbody class = "table-body">
+
+        </tbody>
+      </table>
+
+    </div>
+  <div class="pagination-container">
+    <div class="">
+      Showing page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+  
+    </div>
+  
+    <ul class="pagination align-right float-right mr-auto">
+          {% if page_obj.has_previous %}
+          <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}><a class="page-link" href="?page=1">&laquo; 1</a></li>
+          <li class="page-item"> <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+          {% endif %}
+  
+          {% if page_obj.has_next %}
+          <li class="page-item"> <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+          <li class="page-item"> <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages}} &raquo;</a></li>
+          {% endif %}
+  
+  
+          </ul>
+  
+          {% endif %}
+  </div>
+  </div>
+  <script src="{% static 'js/search.js' %}" charset="utf-8"></script>
+  {% endblock %}

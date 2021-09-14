@@ -1,0 +1,66 @@
+{% include 'applicant/navigatio.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'applicant_home.css' %}">
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="bg-image" style="height: fit-content;">
+      <div class="bg-text">
+        <h2>Jobs Applied</h2>
+      </div>
+    </div>
+    
+    <script src="" async defer></script>
+  </body>
+</html>
+
+<div class="app-table" style="padding: 50px; ">
+  <table class = "table table-stripped table-hover" style="border: 2px solid #282A35; border-radius: 5px; ">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Profile</th> 
+        <th>Status</th>
+        <th></th> 
+
+    </thead>
+
+    <tbody>
+      {% for job,stat in zipd %}
+      <tr>
+          <td style="text-transform: capitalize; ">{{job.job.company_name}}</td>
+          <td style="text-transform: uppercase; ">{{job.job.job_type}}</td>
+        {% if stat == "selected" %}
+        <td><a href="{% url 'jobdetail' job.job.id  %}" class = "btn btn-secondary btn-sm">Selected</a></td>
+        {% elif stat == "pending" %}
+        <td><a href="{% url 'jobdetail' job.job.id  %}" class = "btn btn-secondary btn-sm">Applied</a></td>
+        {% else %}
+        <td><a href="{% url 'jobdetail' job.job.id  %}" class = "btn btn-secondary btn-sm">Rejected</a></td>
+        {% endif %}
+        <td><a href="{% url 'jobdetail' job.job.id  %}" class = "btn btn-secondary btn-sm">View</a></td>
+
+
+
+        
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>

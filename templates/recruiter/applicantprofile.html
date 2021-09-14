@@ -1,0 +1,62 @@
+{% load static %} {% include 'recruiter/navigation.html' %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Applicant Profile</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'applicant_home.css' %}">
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="bg-image" style="height: fit-content;">
+
+      <div class="bg-text">
+        <h2>Applicant Profile</h2>
+      </div>
+    </div>
+    
+    <script src="" async defer></script>
+  </body>
+</html>
+
+{% block content %} <br /><br />
+<div class="container">
+  <div class="row">
+    <div class="col-md-6" style="width: 70%; margin-left: 15%; ">
+      <div class="card card-signin my-5" style="padding: 40px; ">
+        <div class="card-body">
+          <h3 class="text-center">Profile Data</h3>
+          <br />
+          <form class="form-signin">
+            <div class="form-group">
+              <p>Name: {{ profile.name }}</p>
+              <p>Email: {{ profile.email }}</p>
+              <p>Country: {{ profile.gender }}</p>
+              {% if profile.resume %}
+              <p>
+                Resume:
+                <a href="{{ profile.resume.url }}">Click to View/Download</a>
+              </p>
+              {% else %}
+              <p>Resume: Not Provided</p>
+              {% endif %} 
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+   
+  </div>
+</div>
+{% endblock content %}

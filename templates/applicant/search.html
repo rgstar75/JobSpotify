@@ -1,0 +1,43 @@
+{% include 'applicant/navigatio.html' %}
+
+<div class="container">
+  <div class="row">
+    <div >
+     
+      <form
+        action="{% url 'search' %}"
+        method="get"
+      >
+        <input
+          name="search"
+          type="text"
+          style="height: 50px; width: 500px; margin-top: 10px;"
+          placeholder="Enter Job Title, Skills, Type or Company"
+        />
+        
+          <button class="btn btn-lg btn-primary btn-block" type="submit" 
+          style="height: fit-content">
+            Search
+          </button>
+       
+      </div>
+    </div>
+  </div>
+
+
+<div class="row">
+    {% for list in list %}
+    <div class="col-md-6">
+      <div class="card card-signin my-2">
+        
+        <a href="{% url 'jobdetail' list.id  %}">
+
+             <h1>{{ list.job_title }}</h1>
+             <h2>{{ list.job_type }}</h2>
+    
+      </a>
+      
+      </div>
+    </div>
+    {% endfor %}
+  </div>

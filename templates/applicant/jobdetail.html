@@ -1,0 +1,64 @@
+{% include 'applicant/navigatio.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Job Details</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'applicant_home.css' %}">
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="bg-image" style="height: fit-content;">
+
+            <div class="bg-text">
+              <h2 style="text-transform: capitalize; border: 3px solid white; border-radius: 5px; ">{{ job.job_title }} job at {{ job.company_name }}</h2>
+            </div>
+          </div>
+
+          <div class="main" style="background-color: rgb(228, 227, 227); ">
+            <div class="container" 
+                  style="align-content: center; width: 100%; margin-top: 30px; margin-bottom: 30px; background-color: white; border-radius: 5px;  ">
+                <h2 style="margin-left: 40%; text-transform: uppercase; ">{{ job.company_name }}</h2>
+                <h4 style="text-transform: uppercase; border-top: 3px solid #f1f1f1; ">{{ job.job_title }}</h4>
+                <p style="margin-bottom: 15px; border-bottom: 3px solid #f1f1f1; ">Posted on: {{ job.posted_on }}</p>
+                <h4 style="">Profile: </h4>
+                <h5 style="margin-left: 5%; margin-bottom: 15px; text-transform: uppercase; ">{{ job.job_type }}</h5>
+                <h4 style="">Description: </h4>
+                <p style="margin-left: 5%; margin-bottom: 15px; text-transform: capitalize; ">{{ job.job_description }}</p>
+                <h4 style="">Skills required: </h4>
+                <p style="margin-left: 5%; margin-bottom: 15px; text-transform: capitalize; ">{{ job.skills }}</p>
+                <p style="margin-bottom: 25px; width: fit-content; padding: 10px; border-radius: 5px;">
+                  <img src="{% static 'lightning-bolt.gif' %}" width="35" height="35" alt="">
+                  Last date to apply: {{ job.end_date }}</p>
+                {% if not applied %} 
+                <a
+                  class="btn btn-warning btn-lg"
+                  href="{% url 'apply' job.id %}"
+                  style="width: 100%; "
+                  ><b>Apply Now</b></a>
+                
+                {% else %}
+                <a 
+                  class="btn btn-success btn-lg" href="" 
+                  style="width: 100%;"
+                  ><b>Applied!</b></a>
+                  {% endif %}
+            </div> 
+        </div>
+
+    <script src="" async defer></script>
+  </body>
+</html>
+
+    
